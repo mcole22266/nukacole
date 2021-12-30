@@ -1,14 +1,19 @@
 <template>
-
   <div class="taskmanager container">
-    <h1>This is the Task Manager Page</h1>
-  </div>
 
+    <Index />
+
+  </div>
 </template>
 
 <script>
-export default {
+import Index from '@/components/taskmanager/Index.vue';
 
+export default {
+  name: 'Taskmanager',
+  components: {
+    Index,
+  },
 };
 </script>
 

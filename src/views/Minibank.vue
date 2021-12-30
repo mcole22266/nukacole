@@ -1,14 +1,19 @@
 <template>
+  <div class="minibank container">
 
-    <div class="minibank container">
-        <h1>This is the MiniBank Page</h1>
-    </div>
+    <Index />
 
+  </div>
 </template>
 
 <script>
-export default {
+import Index from '@/components/minibank/Index.vue';
 
+export default {
+  name: 'Minibank',
+  components: {
+    Index,
+  },
 };
 </script>
 

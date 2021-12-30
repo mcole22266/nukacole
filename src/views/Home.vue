@@ -1,20 +1,20 @@
 <template>
-
   <div class="home container">
-    <img id="nukacolalogo" alt="Nuka Cola Logo" src="../assets/nukacolalogo-transparent.png">
-    <IndexHome />
-  </div>
 
+    <img id="nukacolalogo" alt="Nuka Cola Logo" src="../assets/nukacolalogo-transparent.png">
+    <Index />
+
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import IndexHome from '@/components/Home/IndexHome.vue';
+import Index from '@/components/home/Index.vue';
 
 export default {
   name: 'Home',
   components: {
-    IndexHome,
+    Index,
   },
 };
 </script>
