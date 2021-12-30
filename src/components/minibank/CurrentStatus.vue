@@ -6,7 +6,7 @@
 
     <div class="card-body">
       <h3 class="card-title text-success">$38.29</h3>
-      <p class="card-text text-muted">Caleb's Account</p>
+      <p class="card-text text-muted">{{ account_name }}</p>
 
       <button class="btn btn-primary btn-sm" v-if="!form_toggled" v-on:click="toggleForm">
         Buy Something
@@ -22,7 +22,7 @@
 
     </div>
 
-    <div class="card-footer">December 30, 2021 | 1:38 pm</div>
+    <div class="card-footer">{{ date }}</div>
 
   </div>
 
@@ -37,6 +37,8 @@ export default {
     BuyForm,
   },
   props: {
+    account_name: String,
+    date: String,
     form_toggled: Boolean,
   },
   methods: {

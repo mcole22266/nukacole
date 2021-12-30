@@ -1,26 +1,31 @@
 {
     "accounts": [
-        {"Caleb's Account": [
-            {
-                "id": 0,
-                "description": "Monthly Payment",
-                "amount": 20.00
-            },
-            {
-                "id": 1,
-                "description": "McDonald's",
-                "amount": -8.24
-            },
-            {
-                "id": 2,
-                "description": "Toy from Walmart",
-                "amount": -12.27
-            },
-            {
-                "id": 0,
-                "description": "Amazon Order",
-                "amount": -3.92
-            }
-        ]}
+        {
+            "id": 0,
+            "name": "Caleb's Account",
+            "created_date": "December 1, 2021",
+            "activity": [
+                {
+                    "id": 0,
+                    "description": "Monthly Payment",
+                    "amount": 20.00
+                },
+                {
+                    "id": 1,
+                    "description": "McDonald's",
+                    "amount": -8.24
+                },
+                {
+                    "id": 2,
+                    "description": "Toy from Walmart",
+                    "amount": -12.27
+                },
+                {
+                    "id": 0,
+                    "description": "Amazon Order",
+                    "amount": -3.92
+                }
+            ]
+        }
     ]
 }
