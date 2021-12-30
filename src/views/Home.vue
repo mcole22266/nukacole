@@ -1,6 +1,6 @@
 <template>
 
-  <div class="home">
+  <div class="home container">
     <img id="nukacolalogo" alt="Nuka Cola Logo" src="../assets/nukacolalogo-transparent.png">
     <Landing />
   </div>
@@ -20,7 +20,16 @@ export default {
 </script>
 
 <style scoped>
+
 #nukacolalogo {
   width: 50vh;
 }
+
+.home {
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 </style>

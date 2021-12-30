@@ -1,12 +1,45 @@
 <template>
 
-  <div id="nav">
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
 
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/minibank">Mini Bank</router-link> |
-    <router-link to="/taskmanager">Task Manager</router-link>
+        <!-- Home Link -->
+        <router-link class="navbar-brand" to="/">Nuka Cole</router-link>
+        <button
+          class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          v-bind:class="{active: isPage('Home')}"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <!-- Other Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- About Link -->
+            <li class="nav-item">
+              <router-link
+                class="nav-link" v-bind:class="{active: isPage('About')}"
+                to="/about">About</router-link>
+            </li>
+            <!-- Minibank Link -->
+            <li class="nav-item">
+              <router-link
+                class="nav-link" v-bind:class="{active: isPage('Minibank')}"
+                to="/minibank">Mini Bank</router-link>
+            </li>
+            <!-- About Link -->
+            <li class="nav-item">
+              <router-link
+                class="nav-link" v-bind:class="{active: isPage('Taskmanager')}"
+                to="/taskmanager">Task Manager</router-link>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
   </div>
 
   <router-view/>
@@ -14,29 +47,16 @@
 
 <script>
 export default {
-
+  name: 'App',
+  methods: {
+    isPage(pagename) {
+      // Returns true if pagename matches the routename
+      return pagename === this.$route.name;
+    },
+  },
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: darkred;
-}
 </style>
