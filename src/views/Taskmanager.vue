@@ -1,6 +1,6 @@
 <template>
 
-  <div class="taskmanager">
+  <div class="taskmanager container">
     <h1>This is the Task Manager Page</h1>
   </div>
 

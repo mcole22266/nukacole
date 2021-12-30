@@ -1,6 +1,6 @@
 <template>
 
-    <div class="minibank">
+    <div class="minibank container">
         <h1>This is the MiniBank Page</h1>
     </div>
 
