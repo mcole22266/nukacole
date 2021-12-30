@@ -1,0 +1,9 @@
+.sectioned {
+    margin-top: 3rem;
+}
+
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
