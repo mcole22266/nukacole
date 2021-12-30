@@ -15,7 +15,10 @@
         <i class="fa-solid fa-circle-xmark fa-2x"></i>
       </button>
 
-      <BuyForm v-if="form_toggled" />
+      <BuyForm
+        v-if="form_toggled" v-bind:form_toggled="form_toggled"
+        v-on:update:form_toggled="toggleForm"
+        />
 
     </div>
 
