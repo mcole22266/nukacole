@@ -2,7 +2,9 @@
 
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/about">About</router-link> |
+    <router-link to="/minibank">Mini Bank</router-link> |
+    <router-link to="/taskmanager">Task Manager</router-link>
   </div>
 
   <router-view/>
