@@ -1,6 +1,6 @@
 <template>
 
-  <h1>Landing Page</h1>
+  <h1>Home Page</h1>
 
 </template>
 
