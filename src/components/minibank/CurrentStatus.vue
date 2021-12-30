@@ -7,9 +7,15 @@
     <div class="card-body">
       <h3 class="card-title text-success">$38.29</h3>
       <p class="card-text text-muted">Caleb's Account</p>
-      <button class="btn btn-primary btn-sm">Buy Something</button>
 
-      <BuyForm />
+      <button class="btn btn-primary btn-sm" v-if="!form_toggled" v-on:click="toggleForm">
+        Buy Something
+      </button>
+      <button class="fa-btn" v-else v-on:click="toggleForm">
+        <i class="fa-solid fa-circle-xmark fa-2x"></i>
+      </button>
+
+      <BuyForm v-if="form_toggled" />
 
     </div>
 
@@ -27,8 +33,24 @@ export default {
   components: {
     BuyForm,
   },
+  props: {
+    form_toggled: Boolean,
+  },
+  methods: {
+    toggleForm() {
+      this.$emit('update:form_toggled', !this.form_toggled);
+    },
+  },
 };
 </script>
 
 <style>
+
+.fa-btn {
+  border-style: none;
+  color: red;
+  background-color: white;
+  width: 8rem;
+}
+
 </style>

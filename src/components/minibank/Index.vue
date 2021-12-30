@@ -1,6 +1,10 @@
 <template>
 
-  <CurrentStatus id="current-status" class="centered sectioned" />
+  <CurrentStatus
+    id="current-status" class="centered sectioned"
+    v-bind:form_toggled="form_toggled"
+    v-on:update:form_toggled="form_toggled = $event"/>
+
   <HistoryTable id="history-table" class="centered sectioned" />
 
 </template>
@@ -14,6 +18,11 @@ export default {
   components: {
     CurrentStatus,
     HistoryTable,
+  },
+  data() {
+    return {
+      form_toggled: false,
+    };
   },
 };
 </script>
