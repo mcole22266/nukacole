@@ -1,48 +1,43 @@
 <template>
 
-    <table class="table table-striped table-hover">
-        <thead class="table-dark">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Date</th>
-                <th scope="col">Description</th>
-                <th scope="col">Amount</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">0</th>
-                <td>Dec 01, 2021</td>
-                <td>Monthly Payment</td>
-                <td>$20.00</td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Dec 04, 2021</td>
-                <td>McDonald's</td>
-                <td>-$8.24</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Dec 11, 2021</td>
-                <td>Toy from Walmart</td>
-                <td>-$12.27</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Dec 18, 2021</td>
-                <td>Amazon Order</td>
-                <td>-$3.92</td>
-            </tr>
-        </tbody>
+  <table class="table table-striped table-hover">
 
-    </table>
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Date</th>
+        <th scope="col">Description</th>
+        <th scope="col">Amount</th>
+      </tr>
+    </thead>
 
+    <tbody v-for="row in activity" :key="row.id">
+      <tr>
+        <th scope="row">{{ row.id }}</th>
+        <td>Dec 01, 2021</td>
+        <td>{{ row.description }}</td>
+        <td>${{ row.amount }}</td>
+      </tr>
+    </tbody>
+
+  </table>
 </template>
 
 <script>
 export default {
-
+  name: 'Historytable',
+  props: {
+    account_activity: Array,
+  },
+  data() {
+    return {
+      activity: [
+        { id: 0, description: 'Something', amount: 23.12 },
+        { id: 1, description: 'Something Else', amount: -13.82 },
+        { id: 2, description: 'One More Thing', amount: 12.02 },
+      ],
+    };
+  },
 };
 </script>
 

@@ -2,11 +2,11 @@
 
   <div class="card text-center minibank-status-card">
 
-    <div class="card-header text-light bg-dark">Caleb Cole</div>
+    <div class="card-header text-light bg-dark">{{ account.owner }}</div>
 
     <div class="card-body">
       <h3 class="card-title text-success">$38.29</h3>
-      <p class="card-text text-muted">{{ account_name }}</p>
+      <p class="card-text text-muted">{{ account.name }}</p>
 
       <button class="btn btn-primary btn-sm" v-if="!form_toggled" v-on:click="toggleForm">
         Buy Something
@@ -37,9 +37,14 @@ export default {
     BuyForm,
   },
   props: {
-    account_name: String,
+    account: Object,
     date: String,
     form_toggled: Boolean,
+  },
+  data() {
+    return {
+      account_activity: [],
+    };
   },
   methods: {
     toggleForm() {
