@@ -25,10 +25,16 @@
                     "amount": -12.27
                 },
                 {
-                    "id": 0,
+                    "id": 3,
                     "description": "Amazon Order",
                     "date": "Dec 27, 2021",
                     "amount": -3.92
+                },
+                {
+                    "id": 4,
+                    "description": "Found Money",
+                    "date": "Dec 29, 2021",
+                    "amount": 9.27
                 }
             ]
         }

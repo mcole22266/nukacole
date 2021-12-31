@@ -16,8 +16,8 @@
         <th scope="row">{{ row.id }}</th>
         <td>{{ row.date }}</td>
         <td>{{ row.description }}</td>
-        <td v-bind:class="[{ 'text-danger': row.amount <= 0, 'text-success': row.amount > 0 }]">
-          ${{ row.amount }}
+        <td v-bind:class="[{ 'text-danger': row.amount < 0, 'text-success': row.amount >= 0 }]">
+          ${{ row.amount.toString().replace('-', '') }}
         </td>
       </tr>
     </tbody>

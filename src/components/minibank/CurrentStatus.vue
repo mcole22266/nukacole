@@ -5,8 +5,12 @@
     <div class="card-header text-light bg-dark">{{ account.owner }}</div>
 
     <div class="card-body">
-      <h3 class="card-title text-success">$38.29</h3>
-      <p class="card-text text-muted">{{ account.name }}</p>
+      <h1
+        class="card-title"
+        v-bind:class="[{ 'text-success': balance >= 0, 'text-danger': balance < 0 }]">
+        ${{ balance.toString().replace('-', '') }}
+      </h1>
+      <p class="card-text">{{ account.name }}</p>
 
       <button class="btn btn-primary btn-sm" v-if="!form_toggled" v-on:click="toggleForm">
         Buy Something
@@ -22,7 +26,7 @@
 
     </div>
 
-    <div class="card-footer">{{ date }}</div>
+    <div class="card-footer text-muted">{{ date }}</div>
 
   </div>
 
@@ -38,13 +42,9 @@ export default {
   },
   props: {
     account: Object,
+    balance: Number,
     date: String,
     form_toggled: Boolean,
-  },
-  data() {
-    return {
-      account_activity: [],
-    };
   },
   methods: {
     toggleForm() {

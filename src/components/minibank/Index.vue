@@ -4,6 +4,7 @@
     id="current-status" class="centered sectioned"
     v-bind:form_toggled="form_toggled"
     v-bind:account="account"
+    v-bind:balance="balance"
     v-bind:date="date"
     v-on:update:form_toggled="form_toggled = $event"/>
 
@@ -26,12 +27,17 @@ export default {
   data() {
     return {
       account: {},
+      balance: 0,
       date: this.getCleanDate(),
       form_toggled: false,
     };
   },
   async created() {
     this.account = await this.fetchAccount(0);
+
+    this.account.activity.forEach((row) => {
+      this.balance += row.amount;
+    });
   },
   methods: {
     getCleanDate() {
