@@ -7,7 +7,9 @@
     v-bind:date="date"
     v-on:update:form_toggled="form_toggled = $event"/>
 
-  <HistoryTable id="history-table" class="centered sectioned" />
+  <HistoryTable
+    id="history-table" class="centered sectioned"
+    v-bind:account="account"/>
 
 </template>
 
