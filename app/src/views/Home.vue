@@ -1,5 +1,5 @@
 <template>
-  <div class="home container">
+  <div class="home container sectioned">
 
     <img id="nukacolalogo" alt="Nuka Cola Logo" src="../assets/nukacolalogo-transparent.png">
     <Index />

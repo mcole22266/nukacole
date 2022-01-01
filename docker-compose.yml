@@ -6,11 +6,13 @@ services:
     build:
       context: ./app
       dockerfile: dockerfile
+    depends_on:
+      - server
     ports:
       - "8080:8080"
     container_name: app
     volumes:
-    - ./app:/usr/src/app/nukacole
+    - ./app:/app
     - /usr/src/app/nukacole/node_modules
     env_file:
       - ./.env
@@ -20,24 +22,19 @@ services:
     build:
       context: ./server
       dockerfile: dockerfile
+    depends_on:
+      - db
     ports:
-      - "3000:3000"
+      - "80:80"
     container_name: server
     volumes:
-      - ./server:/usr/src/app/api
-      - /usr/src/app/api/node_modules
+      - ./server:/usr/app
+      - /usr/app/node_modules
     env_file:
       - ./.env
       - ./secrets.env
 
-  # mongo:
-  #   image: mongo
-  #   container_name: mongodb
-  #   restart: always
-  #   environment:
-  #     - PUID=1000
-  #     - PGID=1000
-  #   volumes:
-  #     - ./db:/data/db
-  #   ports:
-  #     - 27017:27017
+  db:
+    container_name: db
+    image: mongo:4.0
+    restart: always

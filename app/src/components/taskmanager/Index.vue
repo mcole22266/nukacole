@@ -1,6 +1,6 @@
 <template>
 
-    <h1>This is the Task Manager Page</h1>
+    <h1 class='sectioned'>This is the Task Manager Page</h1>
 
 </template>
 

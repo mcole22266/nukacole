@@ -1,6 +1,6 @@
 <template>
 
-  <h2>About this Project</h2>
+  <h2 class='sectioned'>About this Project</h2>
 
   <p>
     This project is primarily used for me to practice learning

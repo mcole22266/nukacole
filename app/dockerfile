@@ -1,10 +1,12 @@
-FROM node:10
+FROM node:12.2.0
 
-WORKDIR /usr/src/app/nukacole
+WORKDIR /app
 
 COPY package*.json ./
 
 RUN npm install
+
+COPY . .
 
 EXPOSE 8080
 
