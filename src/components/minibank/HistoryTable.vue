@@ -11,7 +11,7 @@
       </tr>
     </thead>
 
-    <tbody v-for="row in account.activity" :key="row.id">
+    <tbody v-for="row in account.activity.slice().reverse()" :key="row.id">
       <tr>
         <th scope="row">{{ row.id }}</th>
         <td>{{ row.date }}</td>
