@@ -51,13 +51,13 @@ export default {
       return cleanDate;
     },
     async fetchAccounts() {
-      const res = await fetch('api/accounts');
+      const res = await fetch('api/minibank/accounts');
 
       const accounts = await res.json();
       return accounts;
     },
     async fetchAccount(id) {
-      const res = await fetch(`api/accounts/${id}`);
+      const res = await fetch(`api/minibank/accounts/${id}`);
 
       const account = await res.json();
       return account;
