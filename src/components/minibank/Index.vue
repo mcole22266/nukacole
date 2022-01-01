@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      account: {},
+      account: { activity: [] },
       balance: 0,
       date: this.getCleanDate(),
       form_toggled: false,
