@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+
+  app:
+    build:
+      context: ./app
+      dockerfile: dockerfile
+    ports:
+      - "8080:8080"
+    container_name: app
+    volumes:
+    - ./app:/usr/src/app/nukacole
+    - /usr/src/app/nukacole/node_modules
+
+  server:
+    build:
+      context: ./server
+      dockerfile: dockerfile
+    ports:
+      - "3000:3000"
+    container_name: server
+    volumes:
+      - ./server:/usr/src/app/api
+      - /usr/src/app/api/node_modules
+
+  # mongo:
+  #   image: mongo
+  #   container_name: mongodb
+  #   restart: always
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #   volumes:
+  #     - ./db:/data/db
+  #   ports:
+  #     - 27017:27017
