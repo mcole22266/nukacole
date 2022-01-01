@@ -12,6 +12,9 @@ services:
     volumes:
     - ./app:/usr/src/app/nukacole
     - /usr/src/app/nukacole/node_modules
+    env_file:
+      - ./.env
+      - ./secrets.env
 
   server:
     build:
@@ -23,6 +26,9 @@ services:
     volumes:
       - ./server:/usr/src/app/api
       - /usr/src/app/api/node_modules
+    env_file:
+      - ./.env
+      - ./secrets.env
 
   # mongo:
   #   image: mongo

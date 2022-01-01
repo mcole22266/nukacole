@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 
-const port = 3000;
+const PORT = process.env.SERVER_PORT;
 
 app.get('/accounts', (req, res, next) => {
     res.json([
@@ -87,6 +87,6 @@ app.get('/accounts/0', (req, res, next) => {
     })
 })
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
