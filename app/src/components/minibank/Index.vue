@@ -21,6 +21,10 @@
 import CurrentStatus from './CurrentStatus.vue';
 import HistoryTable from './HistoryTable.vue';
 
+import AccountService from '../../services/minibank/AccountService';
+
+const accountService = new AccountService();
+
 export default {
   name: 'Minibank Index',
   components: {
@@ -58,25 +62,13 @@ export default {
       });
     },
     async fetchAccounts() {
-      const res = await fetch('api/minibank/account');
-
-      const accounts = await res.json();
-      return accounts;
+      return accountService.fetchAccounts();
     },
     async fetchAccount(id) {
-      const res = await fetch(`api/minibank/account/${id}`);
-
-      const account = await res.json();
-      return account;
+      return accountService.fetchAccount(id);
     },
     async addActivity(newActivity) {
-      await fetch(`api/minibank/account/${this.account_id}`, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(newActivity),
-      });
+      await accountService.addActivity(this.account_id, newActivity);
 
       this.account = await this.fetchAccount(this.account_id);
       this.calculateBalance();
