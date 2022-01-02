@@ -1,9 +1,11 @@
 <template>
+  <div>
 
-  <h1 class="container sectioned">Login</h1>
+    <h1 class="sectioned">Login</h1>
 
-  <LoginForm class="container sectioned" />
+    <LoginForm class="sectioned" />
 
+  </div>
 </template>
 
 <script>

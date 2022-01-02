@@ -1,4 +1,5 @@
 <template>
+<div>
 
   <CurrentStatus
     id="current-status" class="centered sectioned"
@@ -13,6 +14,7 @@
     id="history-table" class="centered sectioned"
     v-bind:account="account"/>
 
+</div>
 </template>
 
 <script>

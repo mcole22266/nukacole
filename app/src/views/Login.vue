@@ -1,7 +1,9 @@
 <template>
+  <div class="login container">
 
-  <Index />
+    <Index />
 
+  </div>
 </template>
 
 <script>
