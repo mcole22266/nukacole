@@ -6,7 +6,8 @@
     v-bind:account="account"
     v-bind:balance="balance"
     v-bind:date="date"
-    v-on:update:form_toggled="form_toggled = $event"/>
+    v-on:update:form_toggled="form_toggled = $event"
+    v-on:update:add_activity="addActivity"/>
 
   <HistoryTable
     id="history-table" class="centered sectioned"
@@ -27,17 +28,15 @@ export default {
   data() {
     return {
       account: { activity: [] },
+      account_id: '61d0e79991fba54c80021c1f',
       balance: 0,
       date: this.getCleanDate(),
       form_toggled: false,
     };
   },
   async created() {
-    this.account = await this.fetchAccount(0);
-
-    this.account.activity.forEach((row) => {
-      this.balance += row.amount;
-    });
+    this.account = await this.fetchAccount(this.account_id);
+    this.calculateBalance();
   },
   methods: {
     getCleanDate() {
@@ -50,17 +49,35 @@ export default {
 
       return cleanDate;
     },
+    calculateBalance() {
+      this.balance = 0;
+      this.account.activity.forEach((row) => {
+        this.balance += row.amount;
+      });
+    },
     async fetchAccounts() {
-      const res = await fetch('api/minibank/accounts');
+      const res = await fetch('api/minibank/account');
 
       const accounts = await res.json();
       return accounts;
     },
     async fetchAccount(id) {
-      const res = await fetch(`api/minibank/accounts/${id}`);
+      const res = await fetch(`api/minibank/account/${id}`);
 
       const account = await res.json();
       return account;
+    },
+    async addActivity(newActivity) {
+      await fetch(`api/minibank/account/${this.account_id}`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(newActivity),
+      });
+
+      this.account = await this.fetchAccount(this.account_id);
+      this.calculateBalance();
     },
   },
 };

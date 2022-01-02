@@ -8,7 +8,7 @@
       <h1
         class="card-title"
         v-bind:class="[{ 'text-success': balance >= 0, 'text-danger': balance < 0 }]">
-        ${{ balance.toString().replace('-', '') }}
+        ${{ balance.toFixed(2).toString().replace('-', '') }}
       </h1>
       <p class="card-text">{{ account.name }}</p>
 
@@ -22,6 +22,7 @@
       <BuyForm
         v-if="form_toggled" v-bind:form_toggled="form_toggled"
         v-on:update:form_toggled="toggleForm"
+        v-on:update:add_activity="addActivity"
         />
 
     </div>
@@ -45,10 +46,14 @@ export default {
     balance: Number,
     date: String,
     form_toggled: Boolean,
+    newActivity: Object,
   },
   methods: {
     toggleForm() {
       this.$emit('update:form_toggled', !this.form_toggled);
+    },
+    addActivity(newActivity) {
+      this.$emit('update:add_activity', newActivity);
     },
   },
 };

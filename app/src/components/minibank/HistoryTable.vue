@@ -4,16 +4,14 @@
 
     <thead class="table-dark">
       <tr>
-        <th scope="col">ID</th>
         <th scope="col">Date</th>
         <th scope="col">Description</th>
         <th scope="col">Amount</th>
       </tr>
     </thead>
 
-    <tbody v-for="row in account.activity.slice().reverse()" :key="row.id">
+    <tbody v-for="row in account.activity.slice().reverse()" :key="row.date">
       <tr>
-        <th scope="row">{{ row.id }}</th>
         <td>{{ row.date }}</td>
         <td>{{ row.description }}</td>
         <td v-bind:class="[{ 'text-danger': row.amount < 0, 'text-success': row.amount >= 0 }]">

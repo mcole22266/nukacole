@@ -31,9 +31,13 @@ export default {
     onSubmit(e) {
       e.preventDefault();
 
-      console.log(this.description);
-      console.log(this.amount);
+      const newActivity = {
+        date: new Date(),
+        description: this.description,
+        amount: parseFloat(this.amount, 10),
+      };
 
+      this.$emit('update:add_activity', newActivity);
       this.$emit('update:form_toggled', !this.form_toggled);
     },
   },

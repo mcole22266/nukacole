@@ -1,92 +1,76 @@
-var express = require('express');
-var router = express.Router();
+const Account = require('../models/minibank');
+const express = require('express');
+const mongoose = require('mongoose');
+const { response } = require('express');
+const router = express.Router();
 
-router.get('/', (req, res, next) => {
-    res.json('The Minibank Router is working :)')
+mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 });
 
-router.get('/accounts', (req, res, next) => {
-    res.json([
-        {
-            "id": 0,
-            "name": "Caleb's Account",
-            "owner": "Caleb Cole",
-            "created_date": "December 1, 2021",
-            "activity": [
-                {
-                    "id": 0,
-                    "description": "Monthly Payment",
-                    "date": "Dec 1, 2021",
-                    "amount": 20.00
-                },
-                {
-                    "id": 1,
-                    "description": "McDonald's",
-                    "date": "Dec 8, 2021",
-                    "amount": -8.24
-                },
-                {
-                    "id": 2,
-                    "description": "Toy from Walmart",
-                    "date": "Dec 13, 2021",
-                    "amount": -12.27
-                },
-                {
-                    "id": 3,
-                    "description": "Amazon Order",
-                    "date": "Dec 27, 2021",
-                    "amount": -3.92
-                },
-                {
-                    "id": 4,
-                    "description": "Found Money",
-                    "date": "Dec 29, 2021",
-                    "amount": 9.27
-                }
-            ]
-        }
-    ])
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB Connection Error: '));
+
+router.get('/', (request, response, next) => {
+    response.json('The Minibank Router is working :)')
 });
 
-router.get('/accounts/0', (req, res, next) => {
-    res.json({
-        "id": 0,
-        "name": "Caleb's Account",
-        "owner": "Caleb Cole",
-        "created_date": "December 1, 2021",
-        "activity": [
-            {
-                "id": 0,
-                "description": "Monthly Payment",
-                "date": "Dec 1, 2021",
-                "amount": 20.00
-            },
-            {
-                "id": 1,
-                "description": "McDonald's",
-                "date": "Dec 8, 2021",
-                "amount": -8.24
-            },
-            {
-                "id": 2,
-                "description": "Toy from Walmart",
-                "date": "Dec 13, 2021",
-                "amount": -12.27
-            },
-            {
-                "id": 3,
-                "description": "Amazon Order",
-                "date": "Dec 27, 2021",
-                "amount": -3.92
-            },
-            {
-                "id": 4,
-                "description": "Found Money",
-                "date": "Dec 29, 2021",
-                "amount": 9.27
-            }
-        ]
-    })
+router.delete('/account', async (request, response) => {
+    await Account.deleteMany({});
+
+    try {
+        response.send('All Accounts Deleted');
+    } catch {
+        response.status(500).send(error);
+    };
+
+})
+
+router.post('/account', async (request, response) => {
+    const account = new Account(request.body);
+
+    try {
+        await account.save();
+        response.send(account);
+    } catch (error) {
+        response.status(500).send(error);
+    };
+
 });
+
+router.get('/account', async (request, response) => {
+    const accounts = await Account.find({});
+
+    try {
+        response.send(accounts);
+    } catch {
+        response.status(500).send(error);
+    };
+});
+
+router.get('/account/:id', async (request, response, next) => {
+    const account = await Account.findById(request.params.id);
+
+    try {
+        response.send(account);
+    } catch {
+        response.status(500).send(error);
+    };
+
+});
+
+router.post('/account/:id', async (request, response, next) => {
+    const account = await Account.findById(request.params.id);
+    console.log(account);
+
+    try {
+        account.activity.push(request.body);
+        await account.save();
+        response.send(account);
+    } catch (error) {
+        response.status(500).send(error);
+    };
+})
 
 module.exports = router;
