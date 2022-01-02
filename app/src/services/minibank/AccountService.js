@@ -1,31 +1,26 @@
+const axios = require('axios').default;
+
 class AccountService {
   constructor() {
     console.log('Account Service created');
   }
 
   fetchAccounts = async () => {
-    const res = await fetch('api/minibank/account');
-
-    const accounts = await res.json();
-    return accounts;
+    // Fetch all accounts
+    const response = await axios.get('api/minibank/account');
+    return response.data;
   }
 
   fetchAccount = async (id) => {
-    const res = await fetch(`api/minibank/account/${id}`);
-
-    const account = await res.json();
-    return account;
+    // Fetch a single account
+    const response = await axios.get(`api/minibank/account/${id}`);
+    return response.data;
   }
 
   addActivity = async (id, newActivity) => {
-    await fetch(`api/minibank/account/${id}`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(newActivity),
-    });
+    // Add a new activity entry to a given account
+    await axios.post(`api/minibank/account/${id}`, newActivity);
   }
 }
 
-module.exports = AccountService;
+export default AccountService;

@@ -22,7 +22,7 @@ export default {
 <style scoped>
 
 #nukacolalogo {
-  width: 50vh;
+  max-width: 50%;
 }
 
 .home {
