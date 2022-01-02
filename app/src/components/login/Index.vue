@@ -5,6 +5,8 @@
 
     <LoginForm class="sectioned" />
 
+    <router-link to="/register" class="centered"><p>Don't have an account?</p></router-link>
+
   </div>
 </template>
 

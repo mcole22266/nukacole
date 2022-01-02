@@ -1,11 +1,13 @@
 <template>
-<div>
+  <div>
 
-  <h1 class="sectioned">This is the Registration Page</h1>
+    <h1 class="sectioned">This is the Registration Page</h1>
 
-  <RegisterForm class="sectioned" />
+    <RegisterForm class="sectioned" />
 
-</div>
+    <router-link to="/login" class="centered"><p>Already have an account?</p></router-link>
+
+  </div>
 </template>
 
 <script>
