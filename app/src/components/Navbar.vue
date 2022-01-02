@@ -31,6 +31,15 @@
                 >Login</router-link
               >
             </li>
+            <!-- Register Link -->
+            <li class="nav-item">
+              <router-link
+                class="nav-link"
+                v-bind:class="{ active: isPage('Register') }"
+                to="/register"
+                >Register</router-link
+              >
+            </li>
             <!-- Minibank Link -->
             <li class="nav-item">
               <router-link

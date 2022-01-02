@@ -33,8 +33,13 @@ export default {
     onSubmit(e) {
       e.preventDefault();
 
+      // temporarily log the inputs until functionality is added
       console.log(this.username);
       console.log(this.password);
+
+      // Clear the form
+      this.username = '';
+      this.password = '';
     },
   },
 };
