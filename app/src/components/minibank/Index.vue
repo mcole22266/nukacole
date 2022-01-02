@@ -23,6 +23,8 @@ import AccountService from '../../services/minibank/AccountService';
 import CurrentStatus from './CurrentStatus.vue';
 import HistoryTable from './HistoryTable.vue';
 
+import getCleanDate from '../../helpers/datetime';
+
 const accountService = new AccountService();
 
 export default {
@@ -48,14 +50,7 @@ export default {
   methods: {
     getCleanDate() {
       // Modify the stored date to present a cleaned up date for the HistoryTable
-      const currentDate = Date();
-      const splitDate = currentDate.split(' ');
-      const date1 = splitDate.slice(0, 3).join(' ');
-      const date2 = splitDate[3];
-      const date3 = splitDate[4];
-      const cleanDate = `${date1}, ${date2} - ${date3}`;
-
-      return cleanDate;
+      return getCleanDate();
     },
     calculateBalance() {
       // Recalculate the total balance based on the total activity
