@@ -17,6 +17,12 @@
         <!-- Other Links -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- Login Link -->
+            <li class="nav-item">
+              <router-link
+                class="nav-link" v-bind:class="{active: isPage('Login')}"
+                to="/login">Login</router-link>
+            </li>
             <!-- Minibank Link -->
             <li class="nav-item">
               <router-link

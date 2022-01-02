@@ -25,6 +25,11 @@ const routes = [
     name: 'Taskmanager',
     component: () => import('../views/Taskmanager.vue'),
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/Login.vue'),
+  },
 ];
 
 const router = createRouter({
