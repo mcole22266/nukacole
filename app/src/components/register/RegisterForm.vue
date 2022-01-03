@@ -51,6 +51,10 @@
 </template>
 
 <script>
+import UserService from '../../services/login/UserService';
+
+const userService = new UserService();
+
 export default {
   name: 'RegisterForm',
   data() {
@@ -65,11 +69,16 @@ export default {
     onSubmit(e) {
       e.preventDefault();
 
-      // Temporarily log the form inputs until functionality is added
-      console.log(this.username);
-      console.log(this.name);
-      console.log(this.password);
-      console.log(this.passwordConfirm);
+      // Create User
+      const user = {
+        username: this.username,
+        password: this.password,
+        name: this.name,
+        created_date: new Date(),
+      };
+
+      // Register User
+      userService.registerUser(user);
 
       // Clear the form
       this.username = '';
