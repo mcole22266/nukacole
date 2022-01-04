@@ -21,6 +21,11 @@
 </template>
 
 <script>
+import UserService from '../../services/login/UserService';
+import router from '../../router/index';
+
+const userService = new UserService();
+
 export default {
   name: 'LoginForm',
   data() {
@@ -30,12 +35,20 @@ export default {
     };
   },
   methods: {
-    onSubmit(e) {
+    async onSubmit(e) {
       e.preventDefault();
 
-      // temporarily log the inputs until functionality is added
-      console.log(this.username);
-      console.log(this.password);
+      const user = await userService.loginUser({
+        username: this.username,
+        password: this.password,
+      });
+
+      // temporarily log the user data until functionality is added
+      if (user) {
+        router.push('/');
+      } else {
+        console.log('failed to authenticate');
+      }
 
       // Clear the form
       this.username = '';

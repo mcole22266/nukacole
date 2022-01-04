@@ -22,50 +22,38 @@
         <!-- Other Links -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <!-- Login Link -->
+            <!-- Login/Logout Link -->
             <li class="nav-item">
               <router-link
                 class="nav-link"
                 v-bind:class="{ active: isPage('Login') }"
                 to="/login"
-                >Login</router-link
-              >
-            </li>
-            <!-- Register Link -->
-            <li class="nav-item">
-              <router-link
-                class="nav-link"
-                v-bind:class="{ active: isPage('Register') }"
-                to="/register"
-                >Register</router-link
-              >
+                v-if="!logged_in">Login</router-link>
+              <a
+                class="nav-link logout"
+                v-on:click="logout"
+                v-else>Logout</a>
             </li>
             <!-- Minibank Link -->
             <li class="nav-item">
               <router-link
                 class="nav-link"
                 v-bind:class="{ active: isPage('Minibank') }"
-                to="/minibank"
-                >Mini Bank</router-link
-              >
+                to="/minibank">Mini Bank</router-link>
             </li>
             <!-- Task Manager Link -->
             <li class="nav-item">
               <router-link
                 class="nav-link"
                 v-bind:class="{ active: isPage('Taskmanager') }"
-                to="/taskmanager"
-                >Task Manager</router-link
-              >
+                to="/taskmanager">Task Manager</router-link>
             </li>
             <!-- About Link -->
             <li class="nav-item">
               <router-link
                 class="nav-link"
                 v-bind:class="{ active: isPage('About') }"
-                to="/about"
-                >About</router-link
-              >
+                to="/about">About</router-link>
             </li>
           </ul>
         </div>
@@ -77,6 +65,11 @@
 </template>
 
 <script>
+import UserService from '../services/login/UserService';
+import router from '../router/index';
+
+const userService = new UserService();
+
 export default {
   name: 'Navbar',
   methods: {
@@ -84,9 +77,22 @@ export default {
       // Returns true if pagename matches the routename
       return pagename === this.$route.name;
     },
+    logout() {
+      userService.logoutUser();
+      this.$store.commit('logout');
+      router.push('Login');
+    },
+  },
+  computed: {
+    logged_in() {
+      return this.$store.state.logged_in;
+    },
   },
 };
 </script>
 
 <style>
+.logout {
+  cursor: pointer;
+}
 </style>

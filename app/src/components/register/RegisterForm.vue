@@ -52,6 +52,7 @@
 
 <script>
 import UserService from '../../services/login/UserService';
+import router from '../../router/index';
 
 const userService = new UserService();
 
@@ -66,7 +67,7 @@ export default {
     };
   },
   methods: {
-    onSubmit(e) {
+    async onSubmit(e) {
       e.preventDefault();
 
       // Create User
@@ -78,7 +79,13 @@ export default {
       };
 
       // Register User
-      userService.registerUser(user);
+      const registeredUser = await userService.registerUser(user);
+
+      if (registeredUser) {
+        router.push('/');
+      } else {
+        console.log('failed to authenticate');
+      }
 
       // Clear the form
       this.username = '';

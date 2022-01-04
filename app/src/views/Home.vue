@@ -4,6 +4,8 @@
     <img id="nukacolalogo" alt="Nuka Cola Logo" src="../assets/nukacolalogo-transparent.png">
     <Index />
 
+    {{ message }}
+
   </div>
 </template>
 
@@ -15,6 +17,11 @@ export default {
   name: 'Home',
   components: {
     Index,
+  },
+  computed: {
+    message() {
+      return this.$store.state.test;
+    },
   },
 };
 </script>
